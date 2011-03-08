@@ -3,7 +3,7 @@ class nfs::client::debian inherits nfs::base {
   package { ["nfs-common", "portmap"]:
     ensure => present,
   }
-  warn ('Including nfs::client::debian on $fqdn')
+  notice ('Including nfs::client::debian on $fqdn')
  
   service { "nfs-common":
     ensure    => running,
