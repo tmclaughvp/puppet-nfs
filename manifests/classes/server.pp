@@ -1,4 +1,5 @@
 class nfs::server inherits nfs::base {
+  require apt
   
   package {"nfs-kernel-server":
     ensure => present,
@@ -12,6 +13,7 @@ class nfs::server inherits nfs::base {
 
   service {"nfs-kernel-server":
     enable      => "true",
-    pattern     => "nfsd"
+    hasstatus   => "true",
+    require     => Package["nfs-kernel-server"]
   }
 }

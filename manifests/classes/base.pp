@@ -26,6 +26,18 @@ class nfs::base {
       }
     }
 
+    Ubuntu: {
+      package { "nfs-common":
+        ensure => present,
+      }
+
+      service { "portmap":
+        ensure    => running,
+        hasstatus => false,
+        require   => Package["portmap"],
+      }
+    }
+
     RedHat: {
       package { "nfs-utils":
         ensure => present,
