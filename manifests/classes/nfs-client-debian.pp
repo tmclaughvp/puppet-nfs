@@ -6,8 +6,13 @@ class nfs::client::debian inherits nfs::base {
 
   file { "/etc/default/portmap":
     ensure => present, owner => root, group => root,
-    mode => 555, content => template("nfs/portmap.erb"),
+    mode => 444, content => template("nfs/portmap.erb"),
     require => Package["portmap"], notify => Service["portmap"],
+  }
+  file { "/etc/default/nfs-common":
+    ensure => present, owner => root, group => root,
+    mode => 444, source => "puppet:///modules/nfs/nfs-common",
+    require => Package["portmap"], 
   }
  
   service { "portmap":
