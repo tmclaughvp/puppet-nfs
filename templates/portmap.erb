@@ -1,0 +1,17 @@
+## Managed by Puppet
+## <%= file %>
+# Portmap configuration file
+#
+# Note: if you manually edit this configuration file,
+# portmap configuration scripts will avoid modifying it
+# (for example, by running 'dpkg-reconfigure portmap').
+
+# If you want portmap to listen only to the loopback
+# interface, uncomment the following line (it will be
+# uncommented automatically if you configure this
+# through debconf).
+<% if has_variable?("ipaddress_eth0") then -%>
+OPTIONS="-i <%= ipaddress_eth0 %>"
+<% else -%>
+OPTIONS="-i 127.0.0.1"
+<% end -%>
