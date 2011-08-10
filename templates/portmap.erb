@@ -12,8 +12,8 @@
 # through debconf).
 <% if has_variable?("ipaddress_eth0") then -%>
 OPTIONS="-i <%= ipaddress_eth0 %>"
-<% elsif has_variable?("ipaddress_br2") then -%>
-OPTIONS="-i <%= ipaddress_br2 %>"
+<% elsif has_variable?("ipaddress_br0") then -%>
+OPTIONS="-i <%= ipaddress_br0 %>"
 <% else -%>
 OPTIONS="-i 127.0.0.1"
 <% end -%>
